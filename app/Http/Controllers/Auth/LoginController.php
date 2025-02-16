@@ -22,7 +22,7 @@ class LoginController extends Controller
     public function login(Request $request) {
 
         $request->validate([
-            'email'   => 'required|email|unique:users,email',
+            'email'   => 'required|email',
             'password'=> 'required',
             'captcha' => 'required|captcha',  
         ]);
