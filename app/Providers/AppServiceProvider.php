@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 
-use App\Interface\Auth\AuthInterface;
 use App\Services\Auth\AuthService;
+use App\Interface\Auth\AuthInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Services\App\PublicationsService;
+use App\Interface\App\PublicationsInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //Registramos el servicio de authenticación
         $this->app->bind(AuthInterface::class, AuthService::class);
+
+
+        //Registramos el servicio  paa obtener la logica de las publiaciones
+        $this->app->bind(PublicationsInterface::class, PublicationsService::class);
     }
 
     /**

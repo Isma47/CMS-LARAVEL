@@ -2,45 +2,93 @@
 
 
 @section('main')
-    <section class="pt-[4rem]">
+    <main class="pt-[4rem]">
 
-        <div class="flex justify-between px-3 md:px-10 py-8 dark:text-white">
+        <!-- Contenedor general con fondo degradado y altura mínima -->
+        <div
+            class="min-h-screen dark:bg-gradient-to-b bg-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 dark:text-white py-10">
+            <div class="mx-auto container px-4 lg:px-0">
 
-            <h3 class="text-2xl uppercase font-extrabold">Mis publicaciones</h3>
+                <div class="flex flex-col lg:flex-row items-end lg:items-center justify-between my-[2rem] mb-[5rem]"
+                    x-data="filterModal">
+                    <!-- Encabezado principal -->
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-2">PUBLICACIONES</h2>
+                        <p class="text-slate-800 dark:text-gray-300 mb-6">Descubre todas las publicaciones en un solo lugar
+                        </p>
+                    </div>
 
-            <form action="">
-                <ul>
-                    <li>Filtos....</li>
-                </ul>
-            </form>
+                    <!-- Filtrar categorias -->
+                    <div>
+                        <button @click="toggleFilters"
+                            class="font-semibold rounded py-2 px-5 text-sm bg-slate-800 hover:bg-slate-600 text-white dark:text-black  dark:bg-white dark:hover:bg-slate-200">Ver
+                            categorias</button>
+                    </div>
 
-        </div>
-
-
-        <!-- Contenedorpara ostra  las publicaciones  -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 px-3 md:px-10 gap-5">
-
-
-            <div class="w-full mx-auto bg-white shadow rounded overflow-hidden">
-                <!-- Contenedor de la imagen con tamaño fijo -->
-                <div class="h-36 w-full">
-                    <img class="w-full h-full object-cover" src="{{ asset('img/login.avif') }}" alt="Imagen de Login">
+                    @include('components.app.filterCategorie')
                 </div>
 
-                <!-- Contenedor de contenido -->
-                <div class="px-4 py-3">
-                    <h4 class="text-xl font-semibold mb-2 text-center">Título</h4>
+                <!-- Grid principal -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+                    @foreach ($paginatePublications as $publication)
+                        <form action="{{ route('publications.show', ['id' => $publication->id]) }}" method="GET"
+                            class="w-full">
+                            <!-- Tarjeta interactiva con botón oculto -->
+                            <button type="submit"
+                                class="max-w-sm w-full bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-1 cursor-pointer">
 
-                    <span class="text-xs text-gray-700 mb-[.5rem] inline-block">Fecha de creación: 10/22/22</span>
+                                <!-- Imagen -->
+                                <div class="h-44 w-full">
+                                    <img class="w-full h-full object-cover" src="{{ asset('img/login.avif') }}"
+                                        alt="Imagen de Publicación">
+                                </div>
 
-                    <button
-                        class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded transition duration-300">
-                        Entrar
-                    </button>
+                                <!-- Contenido interno -->
+                                <div class="px-5 py-4 text-gray-800 flex flex-col">
+                                    <h4 class="text-lg md:text-xl font-semibold text-center mb-2 line-clamp-1">
+                                        {{ $publication->title }}
+                                    </h4>
+
+                                    <p class="text-sm text-gray-600 text-center mb-3 line-clamp-2">
+                                        {{ $publication->description }}
+                                    </p>
+
+                                    <!-- Mostrar la categoría -->
+                                    <p class="text-sm font-semibold text-center">
+                                        Categoría: <span class="text-blue-600">
+                                            {{ $publication->category->nameCategorie ?? 'Sin categoría' }}
+                                        </span>
+                                    </p>
+
+                                    <span class="block text-xs text-gray-500 mb-4 text-center">
+                                        Fecha de creación: {{ $publication->created_at->format('d/m/Y') }}
+                                    </span>
+
+                                    <div class="flex justify-center">
+                                        <span
+                                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ring-0 hover:ring-4 hover:ring-blue-500/50">
+                                            Ver
+                                        </span>
+                                    </div>
+                                </div>
+                            </button>
+                        </form>
+                    @endforeach
+
                 </div>
+
+                <!-- Paginación -->
+                <div class="mt-8 flex justify-center">
+                    {{ $paginatePublications->appends(request()->input())->links() }}
+                </div>
+
+
             </div>
-
         </div>
 
-    </section>
+
+
+
+
+    </main>
 @endsection
