@@ -18,8 +18,10 @@
 
     @include('app.layout.header')
 
+
     @yield('main')
 
+    
     @vite(['resources/js/alpine.js'])
   
 </body>

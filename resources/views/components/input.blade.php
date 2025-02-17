@@ -20,7 +20,7 @@
     focus:ring-2 focus:ring-blue-500 focus:border-blue-500
     transition duration-300 ease-in-out
     hover:border-blue-400 hover:shadow-md
-    focus:outline-none']) }} required
+    focus:outline-none']) }}
     />
 
 

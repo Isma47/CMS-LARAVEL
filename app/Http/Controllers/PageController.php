@@ -29,8 +29,6 @@ class PageController extends Controller
     }
 
 
-
-
     //Obtengo la información filtrada de las categorias selecciondas por el usuarip
     public function getPublicationCategorie(PublicationsService $publicationsService, Request $request)
     {
@@ -65,13 +63,6 @@ class PageController extends Controller
 
 
 
-
-
-
-
-
-
-
     //Obtiene a información del articulo seleccionado 
     public function publication(PublicationsService $publicationsService, $id)
     {
@@ -80,4 +71,13 @@ class PageController extends Controller
             'publication' => $publicationsService->getPublication($id)
         ]);
     }
+
+
+    //Renderizra e dashboard de administrador
+    public function dashboardAdmin() {
+        return view('app.admin.dashboardAdmin');
+    }
+
+
+
 }
