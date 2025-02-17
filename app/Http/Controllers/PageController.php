@@ -77,7 +77,4 @@ class PageController extends Controller
     public function dashboardAdmin() {
         return view('app.admin.dashboardAdmin');
     }
-
-
-
 }

@@ -29,12 +29,14 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Gestión de Publicaciones</h3>
 
                 <div class="flex flex-col space-y-2">
-                    <a href="" class="text-green-500 hover:text-green-700 font-semibold transition">Crear
-                        publicación</a>
-                    <a href="" class="text-green-500 hover:text-green-700 font-semibold transition">Actualizar
-                        publicación</a>
-                    <a href="" class="text-red-500 hover:text-red-700 font-semibold transition">Eliminar
-                        publicación</a>
+                    <a href="{{ route('admin.publications.create') }}" class="text-green-500 hover:text-green-700 font-semibold transition">
+                        Crear publicación
+                    </a>
+                    
+                    <a href="{{ route('admin.publications') }}" class="text-green-500 hover:text-green-700 font-semibold transition">
+                        Gestionar publicaciones
+                    </a>
+                    
                 </div>
             </div>
 
@@ -45,12 +47,10 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Gestión de Categorías</h3>
 
                 <div class="flex flex-col space-y-2">
-                    <a href="" class="text-purple-500 hover:text-purple-700 font-semibold transition">Crear
+                    <a href="{{ route('admin.categories.create') }}" class="text-purple-500 hover:text-purple-700 font-semibold transition">Crear
                         categoría</a>
-                    <a href="" class="text-purple-500 hover:text-purple-700 font-semibold transition">Actualizar
-                        categoría</a>
-                    <a href="" class="text-red-500 hover:text-red-700 font-semibold transition">Eliminar
-                        categoría</a>
+                    <a href="{{ route('admin.categories')}}" class="text-purple-500 hover:text-purple-700 font-semibold transition">Gestionar categorias</a>
+
                 </div>
             </div>
         </section>
@@ -58,4 +58,12 @@
 
 
     </main>
+
+
+    @if (session('success'))
+    <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)"
+        class="fixed top-5 right-5 bg-green-500 text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50">
+        {{ session('success') }}
+    </div>
+@endif
 @endsection

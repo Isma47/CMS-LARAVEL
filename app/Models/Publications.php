@@ -17,6 +17,7 @@ class Publications extends Model
     protected $fillable = [
         'title',
         'description',
+        'name_img',
         'user_id',
         'categories_id',
     ];
@@ -25,11 +26,6 @@ class Publications extends Model
     // Definir si la tabla usa timestamps (created_at, updated_at)
     public $timestamps = true;
 
-
-    public function sections(): HasMany
-    {
-        return $this->hasMany(PublicationsSections::class, 'publication_id');
-    }
 
     //Obtner Categoria
     public function category()

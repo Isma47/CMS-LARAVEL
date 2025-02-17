@@ -31,39 +31,35 @@
                 <!-- Grid principal -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
                     @foreach ($paginatePublications as $publication)
-                        <form action="{{ route('publications.show', ['id' => $publication->id]) }}" method="GET"
-                            class="w-full">
-                            <!-- Tarjeta interactiva con botón oculto -->
-                            <button type="submit"
-                                class="max-w-sm w-full bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-1 cursor-pointer">
-
-                                <!-- Imagen -->
-                                <div class="h-44 w-full">
-                                    <img class="w-full h-full object-cover" src="{{ asset('img/login.avif') }}"
-                                        alt="Imagen de Publicación">
-                                </div>
-
-                                <!-- Contenido interno -->
-                                <div class="px-5 py-4 text-gray-800 flex flex-col">
+                    <form action="{{ route('publications.show', ['id' => $publication->id]) }}" method="GET" class="w-full">
+                        <!-- Tarjeta interactiva con botón oculto -->
+                        <button type="submit"
+                            class="max-w-sm w-full h-[400px] bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-transform transform hover:-translate-y-1 cursor-pointer flex flex-col">
+                            
+                            <!-- Imagen -->
+                            <div class="h-44 w-full">
+                                <img class="w-full h-full object-cover" src="{{ asset('img/login.avif') }}" alt="Imagen de Publicación">
+                            </div>
+                    
+                            <!-- Contenido interno -->
+                            <div class="flex-grow flex flex-col justify-between px-5 py-4 text-gray-800">
+                                <div>
                                     <h4 class="text-lg md:text-xl font-semibold text-center mb-2 line-clamp-1">
                                         {{ $publication->title }}
                                     </h4>
-
                                     <p class="text-sm text-gray-600 text-center mb-3 line-clamp-2">
                                         {{ $publication->description }}
                                     </p>
-
-                                    <!-- Mostrar la categoría -->
                                     <p class="text-sm font-semibold text-center">
                                         Categoría: <span class="text-blue-600">
                                             {{ $publication->category->nameCategorie ?? 'Sin categoría' }}
                                         </span>
                                     </p>
-
+                                </div>
+                                <div>
                                     <span class="block text-xs text-gray-500 mb-4 text-center">
                                         Fecha de creación: {{ $publication->created_at->format('d/m/Y') }}
                                     </span>
-
                                     <div class="flex justify-center">
                                         <span
                                             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ring-0 hover:ring-4 hover:ring-blue-500/50">
@@ -71,8 +67,10 @@
                                         </span>
                                     </div>
                                 </div>
-                            </button>
-                        </form>
+                            </div>
+                        </button>
+                    </form>
+                    
                     @endforeach
 
                 </div>

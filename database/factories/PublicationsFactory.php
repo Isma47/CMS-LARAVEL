@@ -18,7 +18,8 @@ class PublicationsFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(6), 
-            'description' => $this->faker->text(40), 
+            'description' => $this->faker->text(240), 
+            'name_img'      => 'login.avif',
             'user_id' => \App\Models\User::factory(), // Crea un usuario relacionado
             'categories_id' => \App\Models\Categories::factory(), // Crea una categoría relacionada
         ];

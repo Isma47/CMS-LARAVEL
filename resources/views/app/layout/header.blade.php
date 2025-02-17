@@ -19,7 +19,14 @@
         @endcan
         <div class="flex gap-3">
             <i class="bi bi-moon-stars-fill" @click="toggleDarkMode()"></i>
-            <i class="bi bi-door-open-fill"></i>
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="flex items-center space-x-2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    <i class="bi bi-door-open-fill"></i>
+                </button>
+            </form>
+            
         </div>
     </nav>
 

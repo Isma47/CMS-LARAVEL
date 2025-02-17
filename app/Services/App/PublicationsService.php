@@ -44,8 +44,6 @@ class PublicationsService implements PublicationsInterface
             // Buscar la publicación, si no existe, lanza un error 404
             $publication = Publications::findOrFail($id);
 
-            //Filtramos y buscamos el orden de los subtemas de la publicación
-            $publication->sections = $publication->sections()->orderBy('order', 'asc')->get();
 
             return $publication;
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {

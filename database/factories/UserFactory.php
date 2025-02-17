@@ -21,17 +21,25 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     public static int $userCount = 0;
+
+
     public function definition(): array
     {
+        self::$userCount++;
+        $isFirstUser = self::$userCount === 1;
+        
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => $isFirstUser ? 'email@email.com'
+                        : fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('12345678'),
             'remember_token' => Str::random(10),
+            'role' => $isFirstUser ? 'admin' : 'user',
         ];
     }
-
     /**
      * Indicate that the model's email address should be unverified.
      */

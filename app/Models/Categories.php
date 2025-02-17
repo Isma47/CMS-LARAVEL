@@ -14,10 +14,9 @@ class Categories extends Model
 
     // Campos que pueden ser asignados masivamente
     protected $fillable = [
-        'title',
+        'nameCategorie',
         'description',
-        'user_id',
-        'categories_id',
+        'status',
     ];
 
     // Definir si la tabla usa timestamps (created_at, updated_at)
